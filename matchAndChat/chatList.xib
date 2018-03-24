@@ -32,7 +32,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selam!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlv-LE-HnW">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senden 300 metre uzakta " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlv-LE-HnW">
                         <rect key="frame" x="86" y="45" width="258" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -51,7 +51,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="lastMessageLabel" destination="Nlv-LE-HnW" id="qqy-sh-aNI"/>
+                <outlet property="lastLocationDistance" destination="Nlv-LE-HnW" id="rPz-sG-vpi"/>
                 <outlet property="profileImageView" destination="AZ8-rE-1J6" id="WRZ-Ue-QFS"/>
                 <outlet property="usernameLabel" destination="bdW-wD-G4g" id="v6h-qJ-cU6"/>
             </connections>

@@ -12,7 +12,7 @@ class chatListCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var lastMessageLabel: UILabel!
+    @IBOutlet weak var lastLocationDistance: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
