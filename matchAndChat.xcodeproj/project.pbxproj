@@ -19,7 +19,8 @@
 		DE509F092066740700CAE505 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F052066740700CAE505 /* RegisterViewController.swift */; };
 		DE509F0B206679E500CAE505 /* chatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F0A206679E500CAE505 /* chatListCell.swift */; };
 		DE509F0D206679F800CAE505 /* chatList.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE509F0C206679F800CAE505 /* chatList.xib */; };
-		DE509F0F2066807200CAE505 /* chatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F0E2066807200CAE505 /* chatUser.swift */; };
+		DE509F112066CC5900CAE505 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F102066CC5900CAE505 /* ChatViewController.swift */; };
+		DE509F132066CDA700CAE505 /* CustomClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F122066CDA700CAE505 /* CustomClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +39,8 @@
 		DE509F052066740700CAE505 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		DE509F0A206679E500CAE505 /* chatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatListCell.swift; sourceTree = "<group>"; };
 		DE509F0C206679F800CAE505 /* chatList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatList.xib; sourceTree = "<group>"; };
-		DE509F0E2066807200CAE505 /* chatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatUser.swift; sourceTree = "<group>"; };
+		DE509F102066CC5900CAE505 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		DE509F122066CDA700CAE505 /* CustomClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomClass.swift; sourceTree = "<group>"; };
 		F058EFC467127A23B4D363FE /* Pods-matchAndChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matchAndChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-matchAndChat/Pods-matchAndChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,7 +98,8 @@
 				DE509EFC206673C300CAE505 /* Info.plist */,
 				DE509F0A206679E500CAE505 /* chatListCell.swift */,
 				DE509F0C206679F800CAE505 /* chatList.xib */,
-				DE509F0E2066807200CAE505 /* chatUser.swift */,
+				DE509F102066CC5900CAE505 /* ChatViewController.swift */,
+				DE509F122066CDA700CAE505 /* CustomClass.swift */,
 			);
 			path = matchAndChat;
 			sourceTree = "<group>";
@@ -224,6 +227,9 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-matchAndChat/Pods-matchAndChat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -231,6 +237,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -247,7 +256,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE509F062066740700CAE505 /* LoginViewController.swift in Sources */,
-				DE509F0F2066807200CAE505 /* chatUser.swift in Sources */,
+				DE509F112066CC5900CAE505 /* ChatViewController.swift in Sources */,
+				DE509F132066CDA700CAE505 /* CustomClass.swift in Sources */,
 				DE509F092066740700CAE505 /* RegisterViewController.swift in Sources */,
 				DE509EF3206673C300CAE505 /* ChatListViewController.swift in Sources */,
 				DE509F0B206679E500CAE505 /* chatListCell.swift in Sources */,

@@ -195,11 +195,27 @@
                     <navigationItem key="navigationItem" id="hzN-O0-Sv6"/>
                     <connections>
                         <outlet property="chatListTableView" destination="5K7-EP-5SJ" id="QQy-Ji-CFq"/>
+                        <segue destination="eA0-VP-LUc" kind="show" identifier="chatSegue" id="Us5-tS-GGE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QvS-Mq-iTE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="236" y="2507"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="6qr-eb-sl7">
+            <objects>
+                <viewController id="eA0-VP-LUc" customClass="ChatViewController" customModule="matchAndChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GD0-sf-uih">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kwP-qa-Xwy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QRM-AM-Tii" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121" y="2516"/>
         </scene>
         <!--Item-->
         <scene sceneID="SP3-6w-dn8">

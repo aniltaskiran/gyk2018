@@ -11,11 +11,15 @@ import FirebaseDatabase
 import Firebase
 import CoreLocation
 
+var userIDToDetail: [String:UserDetail] = [:]
+
 
 class ChatListViewController: UIViewController {
     var ref: DatabaseReference!
-    var users: [String] = []
-    var allUsers: [String:Any] = [:]
+//    var users: [String] = []
+    var userChatArr: [UserChat] = []
+    var userDetailArr: [UserDetail] = []
+//    var allUsers: [String:Any] = [:]
     var userIDToName: [String:[String:String]] = [:]
 
     @IBOutlet weak var chatListTableView: UITableView!
@@ -46,18 +50,22 @@ class ChatListViewController: UIViewController {
             // Get user value
             let value = snapshot.value as? NSDictionary
             if let allValues = value {
-                for (key, value) in allValues {
-                    let chatValues = value as! [String:Any]
-                    let receiverID = chatValues["receiverID"] as! String
-                    let senderID = chatValues["senderID"] as! String
+                for (key, currentValue) in allValues {
+                    var isContainsUser = false
+
+                    let usr = UserChat(key: key as! String, values: currentValue)
+                    if usr.isMyChat && self.userChatArr.count > 0 {
+                        for checkUsr in self.userChatArr {
+                            print("checkUSR id \(checkUsr.id)")
+                            print("key id \(key as! String)")
+                            if checkUsr.id == key as! String {
+                                isContainsUser = true
+                            }
+                        }
+                    }
                     
-                    let currentUserID = Auth.auth().currentUser?.uid
-                    
-                    if currentUserID == receiverID || currentUserID == senderID {
-                        self.users.append(key as! String)
-                        self.allUsers[key as! String] = value
-                        self.userIDToName["-\(receiverID)"] = ["name":"","lat":"","long":""]
-                        self.userIDToName["-\(senderID)"] = ["name":"","lat":"","long":""]
+                     if usr.isMyChat && !isContainsUser {
+                        self.userChatArr.append(usr)
                     }
                 }
             }
@@ -67,15 +75,15 @@ class ChatListViewController: UIViewController {
                 let idValues = snapshotUsers.value as? NSDictionary
                 if let _ = idValues {
                     for (idKey, idValue) in idValues! {
-                        var _key = idKey as! String
-                        let allIDS = idValue as! [String:Any]
-                        if let x = self.userIDToName[_key]{
-                           self.userIDToName[idKey as! String]!["name"] = allIDS["name"] as? String
-                            self.userIDToName[idKey as! String]!["lat"] = String(describing: allIDS["lat"])
-                            self.userIDToName[idKey as! String]!["long"] = String(describing: allIDS["long"])
-                            print("lat")
-                            print(allIDS["lat"] as? Double)
+                        if let _ = userIDToDetail[idKey as! String] {
+                            print("user detail contains")
+                        } else {
+                            let usrDetail = UserDetail(key: idKey as! String, values: idValues! as! [String : Any])
+                            userIDToDetail[idKey as! String] = usrDetail
+                            self.userDetailArr.append(usrDetail)
                         }
+                      
+
                 }
                 
                 }
@@ -94,44 +102,80 @@ class ChatListViewController: UIViewController {
     }
     
     func write(){
-        self.ref.child("allChats").child("-19033434").child("messages").childByAutoId().setValue(["senderID":Auth.auth().currentUser?.uid,"sender:Name":Auth.auth().currentUser?.email,"text":"asdasdas"])
+        self.ref.child("allChats").child("-19033434").child("messages").childByAutoId().setValue(["senderID":Auth.auth().currentUser?.uid,"senderName":Auth.auth().currentUser?.email,"text":"asdasdas"])
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chatSegue" {
+            if let usr = sender as? UserDetail {
+                let chatVc = segue.destination as! ChatViewController
+                chatVc.usr = usr
+                
+            } else {
+                let chatVc = segue.destination as! ChatViewController
+                chatVc.usr = UserDetail(id: (sender as? String)!)
+            }
+        }
     }
 }
 
 
 extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return userChatArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("chatList", owner: self, options: nil)?.first as! chatListCell
         
         var displayName = ""
+        var lat = ""
+        var long = ""
         
-        let chatValues = allUsers[users[indexPath.row]] as! [String:Any]
-        let receiverID = chatValues["receiverID"] as! String
+        let receiverID = userChatArr[indexPath.row].receiverID
         displayName = receiverID
-        
-        if Auth.auth().currentUser?.uid == receiverID {
-            displayName = chatValues["senderID"] as! String
+        print("auth uid")
+        print(Auth.auth().currentUser?.uid)
+        print("receiver id")
+        print(receiverID)
+
+        var authID = Auth.auth().currentUser?.uid
+
+        if "-\(authID!)" == receiverID {
+            displayName = userChatArr[indexPath.row].senderID
         }
         
-        cell.usernameLabel.text = userIDToName["-\(displayName)"]?["name"]
-        
-        print(userIDToName)
-        let lat = userIDToName["-\(displayName)"]?["lat"]
-        let long = userIDToName["-\(displayName)"]?["long"]
+        for user in userDetailArr {
+            if user.id == displayName {
+                cell.usernameLabel.text = user.name
+                lat = user.lat
+                long = user.long
+            }
+        }
+        print("all user detail")
+        print(userDetailArr)
         cell.lastLocationDistance.text = "\(lat):\(long)"
-
-
         return cell
     }
 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        print(userChatArr[indexPath.row].id)
+        
+        if let usr = userIDToDetail[userChatArr[indexPath.row].getReceiverID()] {
+            self.performSegue(withIdentifier: "chatSegue", sender: usr)
+        } else {
+//            userChatArr[indexPath.row].id
+            
+            self.performSegue(withIdentifier: "chatSegue", sender: userChatArr[indexPath.row].getReceiverID())
+        }
+
     }
     
     
