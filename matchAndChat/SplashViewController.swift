@@ -10,53 +10,17 @@ import UIKit
 import FirebaseAuth
 
 class SplashViewController: UIViewController {
-
-    var email = ""
-    var password = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Splash callback
+        
+        if let _ = Auth.auth().currentUser {
+            self.performSegue(withIdentifier: "mainSegue", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
+        }
     }
-    
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.performSegue(withIdentifier: "mainSegue", sender: self)
-        
-        print("asasdd")
-    }
-//        do {
-//            try Auth.auth().signOut()
-//        } catch let signOutError as NSError {
-//            print ("Error signing out: %@", signOutError)
-//        }
-//
-//        let user = Auth.auth().currentUser
-//        if let usr = user {
-//            print(usr.email)
-//        }
-        
-        
-//
-//        if let existingEmail = UserDefaults.standard.value(forKey: "emailKey")  {
-//           email = existingEmail as! String
-//        }
-//        if let existingPassword = UserDefaults.standard.value(forKey: "passwordKey")  {
-//            password = existingPassword as! String
-//        }
-//
-//        Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
-//
-//            if(err != nil) {
-//                print(err?.localizedDescription)
-//            } else {
-//                self.performSegue(withIdentifier: "mainSegue", sender: self)
-//            }
-//        }
-        
-    
-
 }
 

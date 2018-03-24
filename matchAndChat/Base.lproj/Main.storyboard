@@ -183,7 +183,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QvS-Mq-iTE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="1767"/>
+            <point key="canvasLocation" x="236" y="1705"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="SP3-6w-dn8">
+            <objects>
+                <viewController id="jRB-Df-pv7" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d5n-Ao-piT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="TX0-M9-YlW"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Gde-Qi-x6P"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="miJ-bQ-chr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="1704"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WDc-v3-HTL">
@@ -197,14 +213,15 @@
                     </tabBar>
                     <connections>
                         <segue destination="GIf-TV-Att" kind="relationship" relationship="viewControllers" id="ure-xa-bIn"/>
+                        <segue destination="jRB-Df-pv7" kind="relationship" relationship="viewControllers" id="74i-K6-HXE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EU5-e8-lxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="968.36581709145435"/>
+            <point key="canvasLocation" x="236" y="957"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ciw-z2-BZQ"/>
+        <segue reference="qu5-AC-97l"/>
     </inferredMetricsTieBreakers>
 </document>
