@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="chatListCell" customModule="matchAndChat" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="cKt-0r-95s" customClass="chatListCell" customModule="matchAndChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cKt-0r-95s" id="wru-MS-ZMh">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AZ8-rE-1J6">
+                        <rect key="frame" x="26" y="21" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="inJ-Jp-LXX"/>
+                            <constraint firstAttribute="height" constant="45" id="tPI-Y4-as3"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aras Uçar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdW-wD-G4g">
+                        <rect key="frame" x="86" y="21" width="258" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selam!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlv-LE-HnW">
+                        <rect key="frame" x="86" y="45" width="258" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bdW-wD-G4g" firstAttribute="top" secondItem="AZ8-rE-1J6" secondAttribute="top" id="8OE-qu-3Ce"/>
+                    <constraint firstItem="AZ8-rE-1J6" firstAttribute="top" secondItem="wru-MS-ZMh" secondAttribute="topMargin" constant="10" id="BhL-9I-Not"/>
+                    <constraint firstItem="Nlv-LE-HnW" firstAttribute="leading" secondItem="AZ8-rE-1J6" secondAttribute="trailing" constant="15" id="Gr2-7J-MYJ"/>
+                    <constraint firstItem="Nlv-LE-HnW" firstAttribute="bottom" secondItem="AZ8-rE-1J6" secondAttribute="bottom" id="HKn-JP-gYE"/>
+                    <constraint firstItem="AZ8-rE-1J6" firstAttribute="leading" secondItem="wru-MS-ZMh" secondAttribute="leadingMargin" constant="10" id="Zqk-hx-Max"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Nlv-LE-HnW" secondAttribute="trailing" constant="15" id="iID-JB-X9t"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="bdW-wD-G4g" secondAttribute="trailing" constant="15" id="l7K-0f-tUX"/>
+                    <constraint firstItem="bdW-wD-G4g" firstAttribute="leading" secondItem="AZ8-rE-1J6" secondAttribute="trailing" constant="15" id="wry-Ik-2A4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lastMessageLabel" destination="Nlv-LE-HnW" id="qqy-sh-aNI"/>
+                <outlet property="profileImageView" destination="AZ8-rE-1J6" id="WRZ-Ue-QFS"/>
+                <outlet property="usernameLabel" destination="bdW-wD-G4g" id="v6h-qJ-cU6"/>
+            </connections>
+            <point key="canvasLocation" x="38.5" y="116.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3DE22BACD49DB9036FE7BF58 /* Pods_matchAndChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4C1433A390AA7DEAF0054B /* Pods_matchAndChat.framework */; };
 		DE509EF1206673C300CAE505 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509EF0206673C300CAE505 /* AppDelegate.swift */; };
-		DE509EF3206673C300CAE505 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509EF2206673C300CAE505 /* ViewController.swift */; };
+		DE509EF3206673C300CAE505 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509EF2206673C300CAE505 /* ChatListViewController.swift */; };
 		DE509EF6206673C300CAE505 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE509EF4206673C300CAE505 /* Main.storyboard */; };
 		DE509EF8206673C300CAE505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE509EF7206673C300CAE505 /* Assets.xcassets */; };
 		DE509EFB206673C300CAE505 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE509EF9206673C300CAE505 /* LaunchScreen.storyboard */; };
@@ -17,6 +17,9 @@
 		DE509F072066740700CAE505 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F032066740700CAE505 /* SplashViewController.swift */; };
 		DE509F082066740700CAE505 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE509F042066740700CAE505 /* GoogleService-Info.plist */; };
 		DE509F092066740700CAE505 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F052066740700CAE505 /* RegisterViewController.swift */; };
+		DE509F0B206679E500CAE505 /* chatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F0A206679E500CAE505 /* chatListCell.swift */; };
+		DE509F0D206679F800CAE505 /* chatList.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE509F0C206679F800CAE505 /* chatList.xib */; };
+		DE509F0F2066807200CAE505 /* chatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F0E2066807200CAE505 /* chatUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +27,7 @@
 		B0D324C54598100D4D079BC4 /* Pods-matchAndChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matchAndChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-matchAndChat/Pods-matchAndChat.debug.xcconfig"; sourceTree = "<group>"; };
 		DE509EED206673C300CAE505 /* matchAndChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = matchAndChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE509EF0206673C300CAE505 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DE509EF2206673C300CAE505 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE509EF2206673C300CAE505 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		DE509EF5206673C300CAE505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE509EF7206673C300CAE505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE509EFA206673C300CAE505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,6 +36,9 @@
 		DE509F032066740700CAE505 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		DE509F042066740700CAE505 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE509F052066740700CAE505 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		DE509F0A206679E500CAE505 /* chatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatListCell.swift; sourceTree = "<group>"; };
+		DE509F0C206679F800CAE505 /* chatList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatList.xib; sourceTree = "<group>"; };
+		DE509F0E2066807200CAE505 /* chatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatUser.swift; sourceTree = "<group>"; };
 		F058EFC467127A23B4D363FE /* Pods-matchAndChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matchAndChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-matchAndChat/Pods-matchAndChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,11 +89,14 @@
 				DE509F022066740600CAE505 /* LoginViewController.swift */,
 				DE509F052066740700CAE505 /* RegisterViewController.swift */,
 				DE509F032066740700CAE505 /* SplashViewController.swift */,
-				DE509EF2206673C300CAE505 /* ViewController.swift */,
+				DE509EF2206673C300CAE505 /* ChatListViewController.swift */,
 				DE509EF4206673C300CAE505 /* Main.storyboard */,
 				DE509EF7206673C300CAE505 /* Assets.xcassets */,
 				DE509EF9206673C300CAE505 /* LaunchScreen.storyboard */,
 				DE509EFC206673C300CAE505 /* Info.plist */,
+				DE509F0A206679E500CAE505 /* chatListCell.swift */,
+				DE509F0C206679F800CAE505 /* chatList.xib */,
+				DE509F0E2066807200CAE505 /* chatUser.swift */,
 			);
 			path = matchAndChat;
 			sourceTree = "<group>";
@@ -162,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE509F0D206679F800CAE505 /* chatList.xib in Resources */,
 				DE509EFB206673C300CAE505 /* LaunchScreen.storyboard in Resources */,
 				DE509F082066740700CAE505 /* GoogleService-Info.plist in Resources */,
 				DE509EF8206673C300CAE505 /* Assets.xcassets in Resources */,
@@ -237,8 +247,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE509F062066740700CAE505 /* LoginViewController.swift in Sources */,
+				DE509F0F2066807200CAE505 /* chatUser.swift in Sources */,
 				DE509F092066740700CAE505 /* RegisterViewController.swift in Sources */,
-				DE509EF3206673C300CAE505 /* ViewController.swift in Sources */,
+				DE509EF3206673C300CAE505 /* ChatListViewController.swift in Sources */,
+				DE509F0B206679E500CAE505 /* chatListCell.swift in Sources */,
 				DE509EF1206673C300CAE505 /* AppDelegate.swift in Sources */,
 				DE509F072066740700CAE505 /* SplashViewController.swift in Sources */,
 			);

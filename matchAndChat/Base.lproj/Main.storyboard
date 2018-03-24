@@ -160,30 +160,46 @@
             </objects>
             <point key="canvasLocation" x="1756" y="125"/>
         </scene>
-        <!--Item-->
+        <!--Chat List View Controller-->
         <scene sceneID="i1s-yk-tLq">
             <objects>
-                <viewController id="GIf-TV-Att" sceneMemberID="viewController">
+                <viewController id="GIf-TV-Att" customClass="ChatListViewController" customModule="matchAndChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="atP-kJ-eLS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="main Segue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69f-oc-bOD">
-                                <rect key="frame" x="166" y="323" width="90" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5K7-EP-5SJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell" rowHeight="113" id="Mqw-Ma-6fR" customClass="chatListCell" customModule="matchAndChat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mqw-Ma-6fR" id="div-Ix-85e">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="112.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5K7-EP-5SJ" firstAttribute="leading" secondItem="AfZ-nB-RyL" secondAttribute="leading" id="iUI-XC-jQk"/>
+                            <constraint firstItem="5K7-EP-5SJ" firstAttribute="trailing" secondItem="AfZ-nB-RyL" secondAttribute="trailing" id="k9c-YE-zd9"/>
+                            <constraint firstItem="5K7-EP-5SJ" firstAttribute="bottom" secondItem="AfZ-nB-RyL" secondAttribute="bottom" id="ogd-W5-Nq6"/>
+                            <constraint firstItem="5K7-EP-5SJ" firstAttribute="top" secondItem="atP-kJ-eLS" secondAttribute="top" id="vwj-uq-AMv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AfZ-nB-RyL"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="rmO-ht-BEi"/>
+                    <navigationItem key="navigationItem" id="hzN-O0-Sv6"/>
+                    <connections>
+                        <outlet property="chatListTableView" destination="5K7-EP-5SJ" id="QQy-Ji-CFq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QvS-Mq-iTE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="1705"/>
+            <point key="canvasLocation" x="236" y="2507"/>
         </scene>
         <!--Item-->
         <scene sceneID="SP3-6w-dn8">
@@ -199,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="miJ-bQ-chr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1305" y="1704"/>
+            <point key="canvasLocation" x="1644" y="1703.2983508245879"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WDc-v3-HTL">
@@ -212,13 +228,32 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="GIf-TV-Att" kind="relationship" relationship="viewControllers" id="ure-xa-bIn"/>
+                        <segue destination="tuu-fn-met" kind="relationship" relationship="viewControllers" id="ure-xa-bIn"/>
                         <segue destination="jRB-Df-pv7" kind="relationship" relationship="viewControllers" id="74i-K6-HXE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EU5-e8-lxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="236" y="957"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="6d6-fA-yUM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tuu-fn-met" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="rmO-ht-BEi"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zyW-Xm-9Jf">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GIf-TV-Att" kind="relationship" relationship="rootViewController" id="xvo-cA-I8O"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mar-ui-Ynr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="235.19999999999999" y="1703.7481259370315"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
