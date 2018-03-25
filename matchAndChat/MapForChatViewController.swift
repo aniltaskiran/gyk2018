@@ -53,6 +53,10 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
   
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let allAnnotations = self.mapView.annotations
+        self.mapView.removeAnnotations(allAnnotations)
+        
         let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude )
             userLat = location.latitude
             userLong = location.longitude
@@ -74,9 +78,13 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
                     annotion.coordinate.latitude = self.nearByUsers[i].lat
                     annotion.coordinate.longitude = self.nearByUsers[i].long
                     annotion.title = self.nearByUsers[i].name
+
                    annotion.subtitle = self.nearByUsers[i].id
                      print("name \(self.nearByUsers[i].name)subtitleee \(self.nearByUsers[i].id)")
-                    self.mapView.addAnnotation(annotion)
+                  
+                    if Auth.auth().currentUser?.uid != self.nearByUsers[i].id {
+                        self.mapView.addAnnotation(annotion)
+                    }
                     
                 }
                 

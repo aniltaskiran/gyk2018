@@ -12,7 +12,6 @@ import Firebase
 import JSQMessagesViewController
 
 
-var username = "as"
 var channelID = ""
 var groupPhoto:String? = ""
 

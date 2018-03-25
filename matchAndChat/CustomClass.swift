@@ -32,6 +32,8 @@ internal class UserChat {
         print(currentUserID)
         print("senderID")
         print(self.senderID)
+        print("receiverID")
+        print(self.receiverID)
         if "\(currentUserID!)" == self.senderID {
             return receiverID
         } else {

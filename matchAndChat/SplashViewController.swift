@@ -14,8 +14,7 @@ class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Splash callback
-        
+        // Splash callback  
         if let _ = Auth.auth().currentUser {
             self.performSegue(withIdentifier: "mainSegue", sender: self)
         } else {

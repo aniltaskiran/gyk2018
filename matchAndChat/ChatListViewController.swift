@@ -54,17 +54,24 @@ class ChatListViewController: UIViewController {
         read()
     }
  
+    @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("fail log")
+        }
+    }
     
     func create(){
         let uuid = UUID().uuidString
         print(uuid)
     }
-//    func write(){
-//        self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).setValue(["lat":41.068370,"long":28.942730,"name":"Anıl telefon"])
+    func writeUser(){
+        self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).setValue(["lat":self.userLat,"long":self.userLong,"name":username])
 //        self.ref.child("Users").child("4nCbFJhOUHhqPcqDJAsf1K3MwzI3").setValue(["lat":41.066570,"long":28.942630,"name":"Egemen Erden"])
 //         self.ref.child("Users").child("43sdbFsdkfHhqPcqDJAklkMwzI3").setValue(["lat":41.064570,"long":28.941030,"name":"Yücel Karacalar"])
 //        
-//    }
+    }
     func writeChat(){
         self.ref.child("allChats").child("19033434").child("messages").childByAutoId().setValue(["senderID":Auth.auth().currentUser?.uid,"senderName":Auth.auth().currentUser?.email,"text":"asdasdas"])
         
@@ -185,7 +192,7 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 let distanceInMeters = coordinate.distance(from: requestCoordinate)
                 
-                cell.lastLocationDistance.text = "\(String(format: "%.f", distanceInMeters/1000.0)) kilometre yakınınızda"
+                cell.lastLocationDistance.text = "\(String(format: "%.f", distanceInMeters)) metre yakınınızda"
                 cell.lastLocationDistance.adjustsFontSizeToFitWidth = true
             }
         }
@@ -231,6 +238,7 @@ extension ChatListViewController: CLLocationManagerDelegate {
         let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude )
         userLat = location.latitude
         userLong = location.longitude
+        writeUser()
         chatListTableView.reloadData()
     }
     
