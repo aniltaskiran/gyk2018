@@ -14,10 +14,10 @@ import JSQMessagesViewController
 
 var username = "as"
 var channelID = ""
+var groupPhoto:String? = ""
 
 final class ChatViewController: JSQMessagesViewController {
     var chatRoomName:String? = ""
-    var groupPhoto:String? = ""
     var showPic: Bool!
 
     @IBOutlet var button: UIButton!
@@ -36,13 +36,12 @@ final class ChatViewController: JSQMessagesViewController {
             print(usr?.getReceiverID())
             title = userIDToDetail[(usr?.getReceiverID())!]?.name
             chatRoomName = userIDToDetail[(usr?.getReceiverID())!]?.name
-            groupPhoto = usr?.id
             showPic = true
             channelRef = Database.database().reference().child("allChats").child(channelID)
             messageRef = self.channelRef!.child("messages")
         }
     }
-
+    
     lazy var outgoingBubbleImageView: JSQMessagesBubbleImage = self.setupOutgoingBubble()
     lazy var incomingBubbleImageView: JSQMessagesBubbleImage = self.setupIncomingBubble()
 
@@ -86,12 +85,13 @@ final class ChatViewController: JSQMessagesViewController {
             // Create the image view
             let image = UIImageView()
             image.image = UIImage(named: groupPhoto!)
+            image.contentMode = .scaleAspectFill
             // To maintain the image's aspect ratio:
             //        let imageAspect = image.image!.size.width/image.image!.size.height
             // Setting the image frame so that it's immediately before the text:
             image.frame = CGRect(x: label.frame.origin.x - 50, y: 0, width: 40, height: 40)
             image.center.y = label.center.y
-            image.contentMode = UIViewContentMode.scaleAspectFit
+            image.contentMode = UIViewContentMode.scaleAspectFill
 
             let cons = image.layer
             cons.borderWidth = 1

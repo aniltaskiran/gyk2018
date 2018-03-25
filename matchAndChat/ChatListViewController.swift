@@ -42,7 +42,6 @@ class ChatListViewController: UIViewController {
         }
         chatListTableView.delegate = self
         chatListTableView.dataSource = self
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +52,6 @@ class ChatListViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
         read()
-
     }
  
     
@@ -61,6 +59,17 @@ class ChatListViewController: UIViewController {
         let uuid = UUID().uuidString
         print(uuid)
     }
+//    func write(){
+//        self.ref.child("Users").child((Auth.auth().currentUser?.uid)!).setValue(["lat":41.068370,"long":28.942730,"name":"Anıl telefon"])
+//        self.ref.child("Users").child("4nCbFJhOUHhqPcqDJAsf1K3MwzI3").setValue(["lat":41.066570,"long":28.942630,"name":"Egemen Erden"])
+//         self.ref.child("Users").child("43sdbFsdkfHhqPcqDJAklkMwzI3").setValue(["lat":41.064570,"long":28.941030,"name":"Yücel Karacalar"])
+//        
+//    }
+    func writeChat(){
+        self.ref.child("allChats").child("19033434").child("messages").childByAutoId().setValue(["senderID":Auth.auth().currentUser?.uid,"senderName":Auth.auth().currentUser?.email,"text":"asdasdas"])
+        
+    }
+
     
     func read(){
         print(Auth.auth().currentUser?.uid ?? "")
@@ -118,15 +127,14 @@ class ChatListViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
-    
-    func write(){
-        self.ref.child("allChats").child("-19033434").child("messages").childByAutoId().setValue(["senderID":Auth.auth().currentUser?.uid,"senderName":Auth.auth().currentUser?.email,"text":"asdasdas"])
-        
-    }
-    
+   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chatSegue" {
-//                    if let usr = userIDToDetail[userChatArr[indexPath.row].getReceiverID()] {
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            backItem.tintColor = UIColor.white
+            navigationItem.backBarButtonItem = backItem
+            
             if let user = sender as? UserChat {
                 let chatVc = segue.destination as! ChatViewController
                 chatVc.usr = user
@@ -138,6 +146,11 @@ class ChatListViewController: UIViewController {
 
 extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if userChatArr.count < 0 {
+            chatListTableView.isHidden = true
+        } else {
+            chatListTableView.isHidden = false
+        }
         return userChatArr.count
     }
     
@@ -157,7 +170,7 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
 
         var authID = Auth.auth().currentUser?.uid
 
-        if "-\(authID!)" == receiverID {
+        if "\(authID!)" == receiverID {
             displayName = userChatArr[indexPath.row].senderID
         }
         
@@ -176,6 +189,17 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.lastLocationDistance.adjustsFontSizeToFitWidth = true
             }
         }
+        
+        cell.profileImageView.image = UIImage(named: "\(indexPath.row%3)")
+        
+        cell.profileImageView.contentMode = UIViewContentMode.scaleAspectFill
+        
+        let cons = cell.profileImageView.layer
+        cons.borderWidth = 1
+        cons.masksToBounds = false
+        cons.borderColor = UIColor.black.cgColor
+        cons.cornerRadius = cell.profileImageView.frame.height/2
+             cell.profileImageView.clipsToBounds = true
         print("all user detail")
         print(userDetailArr)
         
@@ -185,14 +209,15 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 70
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         print(userChatArr[indexPath.row].id)
         channelID = userChatArr[indexPath.row].id
-            self.performSegue(withIdentifier: "chatSegue", sender: userChatArr[indexPath.row])
+        groupPhoto = "\(indexPath.row % 3)"
+        self.performSegue(withIdentifier: "chatSegue", sender: userChatArr[indexPath.row])
         
 
     }

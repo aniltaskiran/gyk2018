@@ -80,6 +80,7 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
         
         
     }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation{
             return nil
@@ -154,7 +155,7 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
             let requestCoordinate = CLLocation(latitude: detectedPerson.lat, longitude: detectedPerson.long)
             
             let distanceInMeters = coordinate.distance(from: requestCoordinate)
-            if distanceInMeters < 500  {
+            if distanceInMeters < 500000  {
                 print( detectedPerson.toString())
                self.nearByUsers.append(detectedPerson)
                 

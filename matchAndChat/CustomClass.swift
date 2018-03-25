@@ -12,8 +12,8 @@ import Firebase
 
 internal class UserChat {
     internal let isMyChat: Bool
-    internal let id: String
-    internal let receiverID: String
+    internal var id: String
+    internal var receiverID: String
     internal let senderID: String
 
     init(key:String, values: Any) {
@@ -32,7 +32,7 @@ internal class UserChat {
         print(currentUserID)
         print("senderID")
         print(self.senderID)
-        if "-\(currentUserID!)" == self.senderID {
+        if "\(currentUserID!)" == self.senderID {
             return receiverID
         } else {
             return senderID
@@ -48,7 +48,7 @@ internal class UserChat {
         let currentUserID = Auth.auth().currentUser?.uid
 
         if currentUserID == receiverID || currentUserID == senderID {
-            return ("\(key)", "-\(receiverID)", "-\(senderID)", true)
+            return ("\(key)", "\(receiverID)", "\(senderID)", true)
         }
         return ("","","", false)
     }
