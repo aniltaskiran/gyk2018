@@ -73,7 +73,7 @@ class ChatListViewController: UIViewController {
 //        
     }
     func writeChat(){
-        self.ref.child("allChats").child("19033434").child("messages").childByAutoId().setValue(["senderID":Auth.auth().currentUser?.uid,"senderName":Auth.auth().currentUser?.email,"text":"asdasdas"])
+        self.ref.child("allChats").child("19033434").child("messages").childByAutoId().setValue(["senderID":Auth.auth().currentUser?.uid,"senderName":Auth.auth().currentUser?.email,"text":"Merhaba!"])
         
     }
 

@@ -31,7 +31,8 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-          ref = Database.database().reference()
+   
+        ref = Database.database().reference()
         tableView.delegate=self
         tableView.dataSource=self
         mapView.delegate = self
@@ -41,30 +42,35 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-  
+        
+     
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         locationManager.startUpdatingLocation()
         self.tabBarController?.tabBar.isHidden = false
+        
     }
 
   
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let allAnnotations = self.mapView.annotations
-        self.mapView.removeAnnotations(allAnnotations)
-        
+//        let allAnnotations = self.mapView.annotations
+//        self.mapView.removeAnnotations(allAnnotations)
+//        
         let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude )
             userLat = location.latitude
             userLong = location.longitude
         
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09)
+        let span = MKCoordinateSpan(latitudeDelta: 0.0008, longitudeDelta: 0.0008)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
+        
         locationManager.stopUpdatingLocation()
         
         pullUserNearBy(){(exist) -> () in
@@ -82,9 +88,9 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
                    annotion.subtitle = self.nearByUsers[i].id
                      print("name \(self.nearByUsers[i].name)subtitleee \(self.nearByUsers[i].id)")
                   
-                    if Auth.auth().currentUser?.uid != self.nearByUsers[i].id {
+                   
                         self.mapView.addAnnotation(annotion)
-                    }
+                    
                     
                 }
                 
@@ -113,7 +119,9 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
             pinView?.canShowCallout = true
              pinView?.pinTintColor = UIColor.orange
-                
+            if((pinView?.annotation?.subtitle)! == Auth.auth().currentUser?.uid){
+                pinView?.pinTintColor = UIColor.blue
+            }
   
             let button = UIButton(type: UIButtonType.contactAdd)
             pinView?.rightCalloutAccessoryView = button
@@ -131,16 +139,20 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
         
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
         detectedPersonObject.id = ((view.annotation?.subtitle)!)!
-        
-        
     }
+    
     func pullUserNearBy(completionHandler: @escaping ((_ exist : Bool) -> Void)){
-      
-       
+ 
         Database.database().reference(withPath:
             "Users").observe(.value, with: { (snapShot) in
                 if snapShot.exists() {
+                    let allAnnotations = self.mapView.annotations
+                    for ann in allAnnotations {
+                        self.mapView.removeAnnotation(ann)
+                    }
+                    
                      self.nearByUsers.removeAll(keepingCapacity: false)
                     let array:NSArray = snapShot.children.allObjects as NSArray
                    
@@ -152,10 +164,7 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
                             
                             self.takeCloser(detectedPerson: UserLocationModel( lat: data.value(forKey: "lat")! as! Double, long: data.value(forKey: "long")! as! Double, name: data.value(forKey: "name")! as! String ,id: snap.key ))
                            
-                           
                         }
-                        
-                        
                         
                     }
                 
