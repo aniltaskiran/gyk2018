@@ -13,7 +13,7 @@
         <!--Splash View Controller-->
         <scene sceneID="Vzv-3Q-srB">
             <objects>
-                <viewController id="hFG-CJ-Wre" customClass="SplashViewController" customModule="Match_and_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hFG-CJ-Wre" customClass="SplashViewController" customModule="matchAndChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T7q-oj-CJE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
         <!--Login View Controller-->
         <scene sceneID="cOX-z0-cma">
             <objects>
-                <viewController id="Tcd-jU-X5S" customClass="LoginViewController" customModule="Match_and_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Tcd-jU-X5S" customClass="LoginViewController" customModule="matchAndChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ble-1w-UgF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,7 +109,7 @@
         <!--Register View Controller-->
         <scene sceneID="Lzt-ue-2br">
             <objects>
-                <viewController id="u8A-AL-wCi" customClass="RegisterViewController" customModule="Match_and_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="u8A-AL-wCi" customClass="RegisterViewController" customModule="matchAndChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ARr-eE-YRK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -250,7 +250,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EU5-e8-lxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="957"/>
+            <point key="canvasLocation" x="234" y="1005"/>
         </scene>
         <!--Item-->
         <scene sceneID="6d6-fA-yUM">
@@ -269,7 +269,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mar-ui-Ynr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="235.19999999999999" y="1703.7481259370315"/>
+            <point key="canvasLocation" x="234" y="1886"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

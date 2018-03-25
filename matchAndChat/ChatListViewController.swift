@@ -21,14 +21,25 @@ class ChatListViewController: UIViewController {
     var userDetailArr: [UserDetail] = []
 //    var allUsers: [String:Any] = [:]
     var userIDToName: [String:[String:String]] = [:]
+    let locationManager = CLLocationManager()
 
+    var userLat = 0.0
+    var userLong = 0.0
+    
     @IBOutlet weak var chatListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = Database.database().reference()
-
+        locationManager.delegate = self
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestLocation()
+            locationManager.startUpdatingLocation()
+        }
         chatListTableView.delegate = self
         chatListTableView.dataSource = self
         
@@ -36,8 +47,15 @@ class ChatListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        read()
+
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+        read()
+
+    }
+ 
     
     func create(){
         let uuid = UUID().uuidString
@@ -108,13 +126,10 @@ class ChatListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chatSegue" {
-            if let usr = sender as? UserDetail {
+//                    if let usr = userIDToDetail[userChatArr[indexPath.row].getReceiverID()] {
+            if let user = sender as? UserChat {
                 let chatVc = segue.destination as! ChatViewController
-                chatVc.usr = usr
-                
-            } else {
-                let chatVc = segue.destination as! ChatViewController
-                chatVc.usr = UserDetail(id: (sender as? String)!)
+                chatVc.usr = user
             }
         }
     }
@@ -151,11 +166,20 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.usernameLabel.text = user.name
                 lat = user.lat
                 long = user.long
+                let coordinate = CLLocation(latitude: self.userLat, longitude: self.userLong)
+                
+                let requestCoordinate = CLLocation(latitude: Double(user.lat)!, longitude: Double(user.long)!)
+                
+                let distanceInMeters = coordinate.distance(from: requestCoordinate)
+                
+                cell.lastLocationDistance.text = "\(String(format: "%.f", distanceInMeters/1000.0)) kilometre yakınınızda"
+                cell.lastLocationDistance.adjustsFontSizeToFitWidth = true
             }
         }
         print("all user detail")
         print(userDetailArr)
-        cell.lastLocationDistance.text = "\(lat):\(long)"
+        
+  
         return cell
     }
 
@@ -167,17 +191,36 @@ extension ChatListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         print(userChatArr[indexPath.row].id)
+        channelID = userChatArr[indexPath.row].id
+            self.performSegue(withIdentifier: "chatSegue", sender: userChatArr[indexPath.row])
         
-        if let usr = userIDToDetail[userChatArr[indexPath.row].getReceiverID()] {
-            self.performSegue(withIdentifier: "chatSegue", sender: usr)
-        } else {
-//            userChatArr[indexPath.row].id
-            
-            self.performSegue(withIdentifier: "chatSegue", sender: userChatArr[indexPath.row].getReceiverID())
-        }
 
     }
     
+    
+}
+
+extension ChatListViewController: CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude )
+        userLat = location.latitude
+        userLong = location.longitude
+        chatListTableView.reloadData()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            if status == .authorizedWhenInUse {
+                // authorized location status when app is in use; update current location
+                locationManager.startUpdatingLocation()
+                // implement additional logic if needed...
+            }
+            // implement logic for other status values if needed...
+        }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
     
 }
 

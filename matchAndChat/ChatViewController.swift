@@ -13,15 +13,14 @@ import JSQMessagesViewController
 
 
 var username = "as"
+var channelID = ""
 
 final class ChatViewController: JSQMessagesViewController {
     var chatRoomName:String? = ""
     var groupPhoto:String? = ""
     var showPic: Bool!
-    var channelId: String?
 
     @IBOutlet var button: UIButton!
-
     var channelRef: DatabaseReference!
     private var messageRef: DatabaseReference!
 
@@ -32,15 +31,14 @@ final class ChatViewController: JSQMessagesViewController {
     private var photoMessageMap = [String: JSQPhotoMediaItem]()
 
     //    private var localTyping = false
-    var usr: UserDetail? {
+    var usr: UserChat? {
         didSet {
-            print(usr?.id)
-            title = userIDToDetail[(usr?.id)!]?.name
-            chatRoomName = userIDToDetail[(usr?.id)!]?.name
+            print(usr?.getReceiverID())
+            title = userIDToDetail[(usr?.getReceiverID())!]?.name
+            chatRoomName = userIDToDetail[(usr?.getReceiverID())!]?.name
             groupPhoto = usr?.id
-            channelId = usr?.id
             showPic = true
-            channelRef = Database.database().reference().child("allChats").child((usr?.id)!)
+            channelRef = Database.database().reference().child("allChats").child(channelID)
             messageRef = self.channelRef!.child("messages")
         }
     }

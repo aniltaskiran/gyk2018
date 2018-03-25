@@ -28,11 +28,14 @@ internal class UserChat {
     }
     func getReceiverID()->String{
         let currentUserID = Auth.auth().currentUser?.uid
-        
-        if currentUserID == self.receiverID {
-            return senderID
-        } else {
+        print("current User")
+        print(currentUserID)
+        print("senderID")
+        print(self.senderID)
+        if "-\(currentUserID!)" == self.senderID {
             return receiverID
+        } else {
+            return senderID
         }
     }
     
@@ -88,7 +91,7 @@ internal class UserDetail {
                 }
             }
         }
-        return ("\(_name)", "-\(_lat)", "-\(_long)")
+        return ("\(_name)", "\(_lat)", "\(_long)")
     }
 }
 
