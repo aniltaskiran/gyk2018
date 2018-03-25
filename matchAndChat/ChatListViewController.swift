@@ -12,12 +12,12 @@ import Firebase
 import CoreLocation
 
 var userIDToDetail: [String:UserDetail] = [:]
+var userChatArr: [UserChat] = []
 
 
 class ChatListViewController: UIViewController {
     var ref: DatabaseReference!
 //    var users: [String] = []
-    var userChatArr: [UserChat] = []
     var userDetailArr: [UserDetail] = []
 //    var allUsers: [String:Any] = [:]
     var userIDToName: [String:[String:String]] = [:]
@@ -81,8 +81,8 @@ class ChatListViewController: UIViewController {
                     var isContainsUser = false
 
                     let usr = UserChat(key: key as! String, values: currentValue)
-                    if usr.isMyChat && self.userChatArr.count > 0 {
-                        for checkUsr in self.userChatArr {
+                    if usr.isMyChat && userChatArr.count > 0 {
+                        for checkUsr in userChatArr {
                             print("checkUSR id \(checkUsr.id)")
                             print("key id \(key as! String)")
                             if checkUsr.id == key as! String {
@@ -92,7 +92,7 @@ class ChatListViewController: UIViewController {
                     }
                     
                      if usr.isMyChat && !isContainsUser {
-                        self.userChatArr.append(usr)
+                        userChatArr.append(usr)
                     }
                 }
             }

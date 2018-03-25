@@ -12,10 +12,19 @@ class UserLocationModel {
     var lat = 0.0
     var long = 0.0
     var name = ""
-    init(lat:Double,long:Double,name:String) {
+    var id = ""
+    init(){
+        
+    }
+    init(lat:Double,long:Double,name:String,id:String) {
         self.lat=lat
         self.long = long
         self.name=name
+        self.id = id 
+    }
+    init(id:String) {
+        
+        self.id = id
     }
     
     func toString() -> String {

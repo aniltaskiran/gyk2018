@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Firebase
 import CoreLocation
 import FirebaseAuth
 import FirebaseDatabase
@@ -15,11 +16,14 @@ import FirebaseDatabase
 class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocationManagerDelegate , UITableViewDelegate, UITableViewDataSource{
     @IBOutlet weak var tableView: UITableView!
     var locationManager = CLLocationManager()
+    var ref: DatabaseReference!
     var requestCLLocation = CLLocation()
     var nearByUsers = [UserLocationModel]()
+    var userChats = [UserLocationModel]()
+    var chatListController = ChatListViewController()
     var userLat = 0.0
     var userLong = 0.0
-    
+    var detectedPersonObject = UserLocationModel()
     @IBOutlet weak var illustrateButton: UIButton!
     @IBOutlet weak var tableViewConstraint: NSLayoutConstraint!
     
@@ -27,7 +31,7 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
     @IBOutlet weak var mapView: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+          ref = Database.database().reference()
         tableView.delegate=self
         tableView.dataSource=self
         mapView.delegate = self
@@ -38,6 +42,12 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
   
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationManager.startUpdatingLocation()
+        self.tabBarController?.tabBar.isHidden = false
     }
 
   
@@ -64,8 +74,8 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
                     annotion.coordinate.latitude = self.nearByUsers[i].lat
                     annotion.coordinate.longitude = self.nearByUsers[i].long
                     annotion.title = self.nearByUsers[i].name
-                    
-                    
+                   annotion.subtitle = self.nearByUsers[i].id
+                     print("name \(self.nearByUsers[i].name)subtitleee \(self.nearByUsers[i].id)")
                     self.mapView.addAnnotation(annotion)
                     
                 }
@@ -112,23 +122,29 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
         
         
     }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        detectedPersonObject.id = ((view.annotation?.subtitle)!)!
+        
+        
+    }
     func pullUserNearBy(completionHandler: @escaping ((_ exist : Bool) -> Void)){
       
-        
+       
         Database.database().reference(withPath:
             "Users").observe(.value, with: { (snapShot) in
                 if snapShot.exists() {
                      self.nearByUsers.removeAll(keepingCapacity: false)
                     let array:NSArray = snapShot.children.allObjects as NSArray
-                    
+                   
                     for child in array {
                         let snap = child as! DataSnapshot
                         if snap.value is NSDictionary {
+                           
                             let data:NSDictionary = snap.value as! NSDictionary
                             
-                            self.takeCloser(detectedPerson: UserLocationModel( lat: data.value(forKey: "lat")! as! Double, long: data.value(forKey: "long")! as! Double, name: data.value(forKey: "name")! as! String))
+                            self.takeCloser(detectedPerson: UserLocationModel( lat: data.value(forKey: "lat")! as! Double, long: data.value(forKey: "long")! as! Double, name: data.value(forKey: "name")! as! String ,id: snap.key ))
                            
-          
+                           
                         }
                         
                         
@@ -143,8 +159,47 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
         
 }
     
+   
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        backItem.tintColor = UIColor.white
+        navigationItem.backBarButtonItem = backItem
+        
+        if segue.identifier == "chatFromMap" {
+            
+            if let user = sender as? UserChat {
+                let chatVc = segue.destination as! ChatViewController
+                chatVc.usr = user
+            }
+        }
+    }
+    
     @objc func buttonAction(sender: UIButton!) {
-        print("Button tapped")
+        
+      
+        for detectedPerson in userChatArr{
+           
+          //chat is exist
+        if( detectedPerson.getReceiverID() == detectedPersonObject.id){
+         
+            channelID = detectedPerson.id
+            
+            self.performSegue(withIdentifier: "chatFromMap", sender: detectedPerson)
+            return
+        }
+        }
+        let uuid = UUID().uuidString
+        self.ref.child("allChats").child(uuid).setValue(["receiverID":detectedPersonObject.id,"senderID":Auth.auth().currentUser?.uid,"messages":[uuid:["senderID":Auth.auth().currentUser?.uid,"senderName":Auth.auth().currentUser?.email,"text":"asdasdas"]]])
+        
+        channelID = uuid
+        var usr = UserChat(key: detectedPersonObject.id, values: ["receiverID":"","senderID":""])
+        usr.receiverID = detectedPersonObject.id
+        
+        self.performSegue(withIdentifier: "chatFromMap", sender: usr)
+        
     }
     
     func takeCloser(detectedPerson:UserLocationModel){
@@ -155,7 +210,7 @@ class MapForChatViewController: UIViewController , MKMapViewDelegate, CLLocation
             let requestCoordinate = CLLocation(latitude: detectedPerson.lat, longitude: detectedPerson.long)
             
             let distanceInMeters = coordinate.distance(from: requestCoordinate)
-            if distanceInMeters < 500000  {
+            if distanceInMeters < 5000 {
                 print( detectedPerson.toString())
                self.nearByUsers.append(detectedPerson)
                 

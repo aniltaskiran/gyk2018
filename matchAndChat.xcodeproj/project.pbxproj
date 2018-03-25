@@ -21,10 +21,11 @@
 		DE509F0D206679F800CAE505 /* chatList.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE509F0C206679F800CAE505 /* chatList.xib */; };
 		DE509F112066CC5900CAE505 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F102066CC5900CAE505 /* ChatViewController.swift */; };
 		DE509F132066CDA700CAE505 /* CustomClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE509F122066CDA700CAE505 /* CustomClass.swift */; };
-		DEEC3BBB20678F2E00EAD9AE /* convertMapToListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC3BB720678F2D00EAD9AE /* convertMapToListCell.swift */; };
-		DEEC3BBC20678F2E00EAD9AE /* convertMapToListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEEC3BB820678F2D00EAD9AE /* convertMapToListCell.xib */; };
-		DEEC3BBE20678F2E00EAD9AE /* MapForChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC3BBA20678F2E00EAD9AE /* MapForChatViewController.swift */; };
-		DEEC3BC020678F9700EAD9AE /* UserLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC3BBF20678F9700EAD9AE /* UserLocationModel.swift */; };
+		DEEC3BC62067C6B500EAD9AE /* convertMapToListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEEC3BC12067C6B500EAD9AE /* convertMapToListCell.xib */; };
+		DEEC3BC72067C6B500EAD9AE /* UserLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC3BC22067C6B500EAD9AE /* UserLocationModel.swift */; };
+		DEEC3BC82067C6B500EAD9AE /* UserMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC3BC32067C6B500EAD9AE /* UserMessagesModel.swift */; };
+		DEEC3BC92067C6B500EAD9AE /* MapForChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC3BC42067C6B500EAD9AE /* MapForChatViewController.swift */; };
+		DEEC3BCA2067C6B500EAD9AE /* convertMapToListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC3BC52067C6B500EAD9AE /* convertMapToListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,10 +46,11 @@
 		DE509F0C206679F800CAE505 /* chatList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = chatList.xib; sourceTree = "<group>"; };
 		DE509F102066CC5900CAE505 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		DE509F122066CDA700CAE505 /* CustomClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomClass.swift; sourceTree = "<group>"; };
-		DEEC3BB720678F2D00EAD9AE /* convertMapToListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertMapToListCell.swift; sourceTree = "<group>"; };
-		DEEC3BB820678F2D00EAD9AE /* convertMapToListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = convertMapToListCell.xib; sourceTree = "<group>"; };
-		DEEC3BBA20678F2E00EAD9AE /* MapForChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapForChatViewController.swift; sourceTree = "<group>"; };
-		DEEC3BBF20678F9700EAD9AE /* UserLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationModel.swift; sourceTree = "<group>"; };
+		DEEC3BC12067C6B500EAD9AE /* convertMapToListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = convertMapToListCell.xib; sourceTree = "<group>"; };
+		DEEC3BC22067C6B500EAD9AE /* UserLocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationModel.swift; sourceTree = "<group>"; };
+		DEEC3BC32067C6B500EAD9AE /* UserMessagesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessagesModel.swift; sourceTree = "<group>"; };
+		DEEC3BC42067C6B500EAD9AE /* MapForChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapForChatViewController.swift; sourceTree = "<group>"; };
+		DEEC3BC52067C6B500EAD9AE /* convertMapToListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertMapToListCell.swift; sourceTree = "<group>"; };
 		F058EFC467127A23B4D363FE /* Pods-matchAndChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matchAndChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-matchAndChat/Pods-matchAndChat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,14 +99,15 @@
 				DE509EF0206673C300CAE505 /* AppDelegate.swift */,
 				DE509F042066740700CAE505 /* GoogleService-Info.plist */,
 				DE509F022066740600CAE505 /* LoginViewController.swift */,
+				DEEC3BC52067C6B500EAD9AE /* convertMapToListCell.swift */,
+				DEEC3BC12067C6B500EAD9AE /* convertMapToListCell.xib */,
+				DEEC3BC42067C6B500EAD9AE /* MapForChatViewController.swift */,
+				DEEC3BC22067C6B500EAD9AE /* UserLocationModel.swift */,
+				DEEC3BC32067C6B500EAD9AE /* UserMessagesModel.swift */,
 				DE509F052066740700CAE505 /* RegisterViewController.swift */,
 				DE509F032066740700CAE505 /* SplashViewController.swift */,
 				DE509EF2206673C300CAE505 /* ChatListViewController.swift */,
-				DEEC3BB720678F2D00EAD9AE /* convertMapToListCell.swift */,
-				DEEC3BB820678F2D00EAD9AE /* convertMapToListCell.xib */,
-				DEEC3BBA20678F2E00EAD9AE /* MapForChatViewController.swift */,
 				DE509EF4206673C300CAE505 /* Main.storyboard */,
-				DEEC3BBF20678F9700EAD9AE /* UserLocationModel.swift */,
 				DE509EF7206673C300CAE505 /* Assets.xcassets */,
 				DE509EF9206673C300CAE505 /* LaunchScreen.storyboard */,
 				DE509EFC206673C300CAE505 /* Info.plist */,
@@ -187,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE509F0D206679F800CAE505 /* chatList.xib in Resources */,
-				DEEC3BBC20678F2E00EAD9AE /* convertMapToListCell.xib in Resources */,
+				DEEC3BC62067C6B500EAD9AE /* convertMapToListCell.xib in Resources */,
 				DE509EFB206673C300CAE505 /* LaunchScreen.storyboard in Resources */,
 				DE509F082066740700CAE505 /* GoogleService-Info.plist in Resources */,
 				DE509EF8206673C300CAE505 /* Assets.xcassets in Resources */,
@@ -270,15 +273,16 @@
 			files = (
 				DE509F062066740700CAE505 /* LoginViewController.swift in Sources */,
 				DE509F112066CC5900CAE505 /* ChatViewController.swift in Sources */,
-				DEEC3BBB20678F2E00EAD9AE /* convertMapToListCell.swift in Sources */,
-				DEEC3BBE20678F2E00EAD9AE /* MapForChatViewController.swift in Sources */,
 				DE509F132066CDA700CAE505 /* CustomClass.swift in Sources */,
 				DE509F092066740700CAE505 /* RegisterViewController.swift in Sources */,
+				DEEC3BC82067C6B500EAD9AE /* UserMessagesModel.swift in Sources */,
 				DE509EF3206673C300CAE505 /* ChatListViewController.swift in Sources */,
+				DEEC3BC72067C6B500EAD9AE /* UserLocationModel.swift in Sources */,
 				DE509F0B206679E500CAE505 /* chatListCell.swift in Sources */,
 				DE509EF1206673C300CAE505 /* AppDelegate.swift in Sources */,
-				DEEC3BC020678F9700EAD9AE /* UserLocationModel.swift in Sources */,
 				DE509F072066740700CAE505 /* SplashViewController.swift in Sources */,
+				DEEC3BC92067C6B500EAD9AE /* MapForChatViewController.swift in Sources */,
+				DEEC3BCA2067C6B500EAD9AE /* convertMapToListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

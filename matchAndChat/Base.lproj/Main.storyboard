@@ -40,10 +40,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell" rowHeight="113" id="Mqw-Ma-6fR" customClass="chatListCell" customModule="matchAndChat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="113"/>
+                                        <rect key="frame" x="0.0" y="28" width="377" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mqw-Ma-6fR" id="div-Ix-85e">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="112.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="377" height="112.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRM-AM-Tii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="2773"/>
+            <point key="canvasLocation" x="1650" y="3266"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="WDc-v3-HTL">
@@ -101,7 +101,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="tuu-fn-met" kind="relationship" relationship="viewControllers" id="ure-xa-bIn"/>
-                        <segue destination="UAE-JG-waS" kind="relationship" relationship="viewControllers" id="eFv-yr-r5V"/>
+                        <segue destination="Kd5-rT-oOQ" kind="relationship" relationship="viewControllers" id="eFv-yr-r5V"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EU5-e8-lxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,7 +131,7 @@
             </objects>
             <point key="canvasLocation" x="234" y="1886"/>
         </scene>
-        <!--Map-->
+        <!--Map For Chat View Controller-->
         <scene sceneID="BIF-ns-hsm">
             <objects>
                 <viewController id="UAE-JG-waS" customClass="MapForChatViewController" customModule="matchAndChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -171,17 +171,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="frt-yw-As8"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="Map" selectedImage="Map" id="3M1-ux-xYk"/>
+                    <navigationItem key="navigationItem" id="6jP-Nf-yq5"/>
                     <connections>
                         <outlet property="illustrateButton" destination="wb4-Qj-WMB" id="YGH-gM-c6n"/>
                         <outlet property="mapView" destination="O8d-ZI-NzN" id="iAf-WH-2yG"/>
                         <outlet property="tableView" destination="cPj-pO-zAP" id="XBQ-ZD-U1e"/>
                         <outlet property="tableViewConstraint" destination="80W-ZM-6eG" id="4pm-2A-KWd"/>
+                        <segue destination="eA0-VP-LUc" kind="show" identifier="chatFromMap" id="V3e-lP-JHE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7VX-EE-ofV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1652" y="1886"/>
+            <point key="canvasLocation" x="1649" y="2589"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="Y47-1h-dmS">
@@ -383,6 +384,29 @@
             </objects>
             <point key="canvasLocation" x="1756" y="-580"/>
         </scene>
+        <!--Map-->
+        <scene sceneID="LeL-lN-CeK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kd5-rT-oOQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" selectedImage="Map" id="3M1-ux-xYk"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x8P-au-qC0">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.45942577420000003" green="0.25291744840000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UAE-JG-waS" kind="relationship" relationship="rootViewController" id="d2H-Xg-Vse"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O5v-mL-7lJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1651.2" y="1885.4572713643179"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ButtonBackGround" width="512" height="90"/>
@@ -394,5 +418,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vij-nv-zsr"/>
+        <segue reference="V3e-lP-JHE"/>
     </inferredMetricsTieBreakers>
 </document>
